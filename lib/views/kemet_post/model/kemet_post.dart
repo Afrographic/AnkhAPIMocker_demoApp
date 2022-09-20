@@ -21,7 +21,7 @@ class KemetPost {
     required this.totalComments,
   });
 
-  KemetPost fromJSON(dynamic kemetPostJSON) {
+  static KemetPost fromJSON(dynamic kemetPostJSON) {
     return KemetPost(
       idUser: kemetPostJSON["idUser"],
       userName: kemetPostJSON["userName"],
@@ -34,8 +34,14 @@ class KemetPost {
     );
   }
 
-  static String ankhAPIMockerInit = """ 
- int idUser;
+  static List<KemetPost> fromJSONArray(dynamic kemetPostArray) {
+    List<KemetPost> posts = [];
+    kemetPostArray.forEach((postItem) => {posts.add(fromJSON(postItem))});
+    return posts;
+  }
+
+  static String ankhInit = """ 
+  int idUser;
   String userName;
   String userAvatar;
   String datePosted;

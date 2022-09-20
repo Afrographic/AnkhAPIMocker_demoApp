@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 // ignore: prefer_const_literals_to_create_immutables
 
 import 'package:ankh_api_mocker/views/kemet_post/model/kemet_post.dart';
@@ -24,10 +24,11 @@ class _KemetPostComponentState extends State<KemetPostComponent> {
             Row(
               children: [
                 CircleAvatar(
-                  radius: 50,
+                  radius: 20,
                   backgroundImage: NetworkImage(widget.kemetPost.userAvatar),
                 ),
                 Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(widget.kemetPost.userName),
                     Text(
@@ -46,7 +47,13 @@ class _KemetPostComponentState extends State<KemetPostComponent> {
         ),
         Container(
           height: 400,
-          decoration: BoxDecoration(color: Colors.red),
+          decoration: BoxDecoration(
+            color: Colors.red,
+            image: DecorationImage(
+              fit: BoxFit.cover,
+              image: NetworkImage(widget.kemetPost.postImageURL),
+            ),
+          ),
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,

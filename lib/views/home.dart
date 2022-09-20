@@ -1,3 +1,6 @@
+// ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
+
+import 'package:ankh_api_mocker/views/kemet_post/views/kemet_post_renderer.dart';
 import 'package:flutter/material.dart';
 
 class Home extends StatefulWidget {
@@ -13,16 +16,33 @@ class _HomeState extends State<Home> {
     return Scaffold(
       body: SafeArea(
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: const [
-            Text("Welcome to"),
-            Text(
-              "Kemet",
-              style: TextStyle(
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Container(
+              padding: EdgeInsets.all(12),
+              child: Column(
+                children: [
+                  Text(
+                    "Welcome to",
+                    textAlign: TextAlign.center,
+                  ),
+                  Text(
+                    "Kemet",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ],
               ),
             ),
+            Divider(
+              height: 12,
+            ),
+            Expanded(
+              child: KemetRenderer(),
+            )
           ],
         ),
       ),
