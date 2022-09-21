@@ -14,67 +14,122 @@ class KemetPostComponent extends StatefulWidget {
 }
 
 class _KemetPostComponentState extends State<KemetPostComponent> {
+  bool descriptionVisible = false;
+  toggleDescription() async {
+    setState(() {
+      descriptionVisible = !descriptionVisible;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Row(
+    return Container(
+      margin: EdgeInsets.symmetric(vertical: 12),
+      child: Column(
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Row(
+                children: [
+                  CircleAvatar(
+                    radius: 20,
+                    backgroundImage: NetworkImage(widget.kemetPost.userAvatar),
+                  ),
+                  SizedBox(
+                    width: 8,
+                  ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(widget.kemetPost.userName),
+                      Text(
+                        widget.kemetPost.datePosted,
+                        style: TextStyle(
+                          fontSize: 11,
+                          color: Colors.grey,
+                        ),
+                      )
+                    ],
+                  )
+                ],
+              ),
+              Icon(Icons.more_vert_rounded)
+            ],
+          ),
+          SizedBox(
+            height: 8,
+          ),
+          Stack(
+            children: [
+              Container(
+                height: 400,
+                decoration: BoxDecoration(
+                  color: Colors.red,
+                  image: DecorationImage(
+                    fit: BoxFit.cover,
+                    image: NetworkImage(widget.kemetPost.postImageURL),
+                  ),
+                ),
+              ),
+              AnimatedOpacity(
+                duration: Duration(milliseconds: 300),
+                opacity: descriptionVisible ? 1 : 0,
+                child: AnimatedContainer(
+                  duration: Duration(milliseconds: 300),
+                  height: descriptionVisible ? 400 : 0,
+                  color: Colors.deepPurpleAccent.withOpacity(0.7),
+                  padding: EdgeInsets.symmetric(horizontal: 64),
+                  child: Center(
+                    child: Text(
+                      widget.kemetPost.postDescriptionlen100,
+                      style: TextStyle(fontSize: 11, color: Colors.white),
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                ),
+              )
+            ],
+          ),
+          SizedBox(
+            height: 8,
+          ),
+          Container(
+            margin: EdgeInsets.all(8),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 CircleAvatar(
-                  radius: 20,
-                  backgroundImage: NetworkImage(widget.kemetPost.userAvatar),
+                  backgroundColor: Colors.grey.withOpacity(0.2),
+                  child: Icon(
+                    Icons.favorite_outline,
+                    color: Colors.black54,
+                  ),
                 ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(widget.kemetPost.userName),
-                    Text(
-                      widget.kemetPost.datePosted,
-                      style: TextStyle(
-                        fontSize: 11,
-                        color: Colors.grey,
-                      ),
-                    )
-                  ],
-                )
+                CircleAvatar(
+                  backgroundColor: Colors.grey.withOpacity(0.2),
+                  child: Icon(
+                    Icons.mode_comment_outlined,
+                    color: Colors.black54,
+                  ),
+                ),
+                GestureDetector(
+                  onTap: () {
+                    toggleDescription();
+                  },
+                  child: CircleAvatar(
+                    backgroundColor: Colors.grey.withOpacity(0.2),
+                    child: Icon(
+                      descriptionVisible ? Icons.close : Icons.info_outline,
+                      color: Colors.black54,
+                    ),
+                  ),
+                ),
               ],
-            ),
-            Icon(Icons.more)
-          ],
-        ),
-        Container(
-          height: 400,
-          decoration: BoxDecoration(
-            color: Colors.red,
-            image: DecorationImage(
-              fit: BoxFit.cover,
-              image: NetworkImage(widget.kemetPost.postImageURL),
             ),
           ),
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Row(
-              children: [
-                Icon(Icons.favorite_outline),
-                SizedBox(
-                  width: 4,
-                ),
-                Icon(Icons.comment),
-                SizedBox(
-                  width: 4,
-                ),
-                Icon(Icons.send)
-              ],
-            ),
-            Icon(Icons.save_alt_sharp)
-          ],
-        )
-      ],
+        ],
+      ),
     );
   }
 }

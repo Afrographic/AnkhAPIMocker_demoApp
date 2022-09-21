@@ -20,6 +20,8 @@ class _HomeState extends State<Home> {
           children: [
             Container(
               padding: EdgeInsets.all(12),
+              color: Colors.grey.withOpacity(0.1),
+              width: MediaQuery.of(context).size.width,
               child: Column(
                 children: [
                   Text(
@@ -36,9 +38,6 @@ class _HomeState extends State<Home> {
                   ),
                 ],
               ),
-            ),
-            Divider(
-              height: 12,
             ),
             Expanded(
               child: KemetRenderer(),
