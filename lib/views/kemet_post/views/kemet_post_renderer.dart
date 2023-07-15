@@ -21,7 +21,11 @@ class _KemetRendererState extends State<KemetRenderer> {
 
   getPosts() async {
     dynamic kemetPosts = await AnkhMocker.generateData(
-        fieldSchema: KemetPost.ankhInit, count: 25);
+      fieldSchema: KemetPost.ankhInit,
+      count: 25,
+      delayInSec: 5
+    );
+
     setState(() {
       posts = KemetPost.fromJSONArray(kemetPosts);
     });

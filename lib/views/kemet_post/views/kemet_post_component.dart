@@ -27,38 +27,47 @@ class _KemetPostComponentState extends State<KemetPostComponent> {
       margin: EdgeInsets.symmetric(vertical: 12),
       child: Column(
         children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Row(
-                children: [
-                  CircleAvatar(
-                    radius: 20,
-                    backgroundImage: NetworkImage(widget.kemetPost.userAvatar),
-                  ),
-                  SizedBox(
-                    width: 8,
-                  ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(widget.kemetPost.userName),
-                      Text(
-                        widget.kemetPost.datePosted,
-                        style: TextStyle(
-                          fontSize: 11,
-                          color: Colors.grey,
-                        ),
-                      )
-                    ],
-                  )
-                ],
-              ),
-              Icon(Icons.more_vert_rounded)
-            ],
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Row(
+                  children: [
+                    CircleAvatar(
+                      radius: 20,
+                      backgroundImage:
+                          NetworkImage(widget.kemetPost.userAvatar),
+                    ),
+                    SizedBox(
+                      width: 8,
+                    ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(widget.kemetPost.userName),
+                        Text(
+                          widget.kemetPost.datePosted,
+                          style: TextStyle(
+                            fontSize: 11,
+                            color: Colors.grey,
+                          ),
+                        )
+                      ],
+                    )
+                  ],
+                ),
+                Icon(Icons.more_vert_rounded)
+              ],
+            ),
           ),
           SizedBox(
             height: 8,
+          ),
+          Container(
+            padding: EdgeInsets.all(8),
+            child: Text(widget.kemetPost.postDescriptionlen100,
+                style: TextStyle(fontSize: 12, color: Colors.grey)),
           ),
           Stack(
             children: [

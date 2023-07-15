@@ -10,6 +10,18 @@ class KemetPost {
   int totalLikes;
   int totalComments;
 
+  
+  static String ankhInit = """ 
+  int idUser;
+  String userName;
+  String userAvatar;
+  String datePosted;
+  String postImageURL;
+  String postDescriptionlen100;
+  int totalLikes;
+  int totalComments;
+  """;
+
   KemetPost({
     required this.idUser,
     required this.userName,
@@ -40,14 +52,4 @@ class KemetPost {
     return posts;
   }
 
-  static String ankhInit = """ 
-  int idUser;
-  String userName;
-  String userAvatar;
-  String datePosted;
-  String postImageURL;
-  String postDescriptionlen100;
-  int totalLikes;
-  int totalComments;
-  """;
 }
